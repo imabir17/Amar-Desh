@@ -150,11 +150,11 @@ export const App: React.FC = () => {
             <div className="flex-1">
                 {/* Hero Section */}
                 <div className="relative bg-teal-900 text-white overflow-hidden">
-                    <div className="absolute inset-0 opacity-50 bg-black z-0"></div>
+                    <div className="absolute inset-0 opacity-60 bg-black z-0"></div>
                     <div className="absolute inset-0">
                         {/* New Image: Natural view of hills/clouds (Sajek/Bandarban vibe) */}
                         <img
-                            src="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?q=80&w=2070&auto=format&fit=crop"
+                            src="https://images.unsplash.com/photo-1673051787560-13622b325a9a?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             className="w-full h-full object-cover"
                             alt="Bangladesh Nature"
                         />

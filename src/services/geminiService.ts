@@ -28,15 +28,15 @@ export const fetchDestinationGuide = async (location: string): Promise<TravelGui
       config: {
         systemInstruction: GUIDE_SYSTEM_INSTRUCTION,
         tools: [
-            { googleMaps: {} }, 
-            { googleSearch: {} }
+          { googleMaps: {} },
+          { googleSearch: {} }
         ],
         temperature: 0.4,
       },
     });
 
     const text = response.text || "Sorry, I couldn't generate a guide for this location.";
-    
+
     // Extract grounding chunks if available
     const groundingChunks = (response.candidates?.[0]?.groundingMetadata?.groundingChunks || []) as GroundingChunk[];
 
@@ -78,13 +78,10 @@ export const fetchTravelRecommendation = async (prefs: TravelPreferences): Promi
     `;
 
     const response: GenerateContentResponse = await ai.models.generateContent({
-      model: 'gemini-3-pro-preview',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: {
         systemInstruction: "You are an intelligent travel planner for Bangladesh. Suggest the best possible trip based on user constraints.",
-        thinkingConfig: {
-          thinkingBudget: 32768,
-        },
         tools: [
           { googleSearch: {} }
         ],
@@ -108,12 +105,9 @@ export const fetchTravelRecommendation = async (prefs: TravelPreferences): Promi
 export const createChatSession = (): Chat => {
   // Using gemini-3-pro-preview with thinking for complex reasoning in chat
   return ai.chats.create({
-    model: 'gemini-3-pro-preview',
+    model: 'gemini-2.0-flash',
     config: {
-      systemInstruction: "You are a helpful travel assistant for Bangladesh. You are knowledgeable about routes, safety, costs, and culture. Think deeply before answering complex queries about itineraries or safety.",
-      thinkingConfig: {
-        thinkingBudget: 32768, 
-      }
+      systemInstruction: "You are a helpful travel assistant for Bangladesh. You are knowledgeable about routes, safety, costs, and culture.",
     },
   });
 };

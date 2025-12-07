@@ -146,39 +146,49 @@ export const App: React.FC = () => {
     // --- RENDER FUNCTIONS ---
 
     const renderHome = () => (
-        <div className="min-h-screen bg-white flex flex-col">
-            <div className="flex-1">
+        <div className="min-h-screen flex flex-col relative overflow-hidden">
+            {/* Animated background particles */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute w-96 h-96 bg-accent-cyan/20 rounded-full blur-3xl top-20 -left-48 animate-float"></div>
+                <div className="absolute w-96 h-96 bg-accent-purple/20 rounded-full blur-3xl top-40 right-0 animate-float delay-100"></div>
+                <div className="absolute w-96 h-96 bg-accent-pink/20 rounded-full blur-3xl bottom-20 left-1/3 animate-float delay-200"></div>
+            </div>
+
+            <div className="flex-1 relative z-10">
                 {/* Hero Section */}
-                <div className="relative bg-teal-900 text-white overflow-hidden">
-                    <div className="absolute inset-0 opacity-60 bg-black z-0"></div>
+                <div className="relative text-white overflow-hidden">
                     <div className="absolute inset-0">
-                        {/* New Image: Natural view of hills/clouds (Sajek/Bandarban vibe) */}
                         <img
                             src="https://images.unsplash.com/photo-1673051787560-13622b325a9a?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover opacity-30"
                             alt="Bangladesh Nature"
                         />
+                        <div className="absolute inset-0 bg-gradient-to-b from-dark-900/80 via-dark-800/90 to-dark-900"></div>
                     </div>
-                    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 flex flex-col items-center text-center">
-                        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 uppercase drop-shadow-lg">
-                            AMAR DESH
-                        </h1>
-                        <p className="text-xl md:text-2xl text-teal-50 max-w-2xl mb-8 drop-shadow-md font-medium">
-                            The Ultimate AI Travel Guide for Bangladesh.
+                    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 flex flex-col items-center text-center">
+                        <div className="mb-8 inline-block">
+                            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 gradient-text uppercase animate-slide-up">
+                                AMAR DESH
+                            </h1>
+                            <div className="h-1 w-32 mx-auto bg-gradient-to-r from-accent-cyan via-accent-purple to-accent-pink rounded-full"></div>
+                        </div>
+                        <p className="text-xl md:text-2xl text-slate-300 max-w-2xl mb-10 font-light animate-slide-up delay-100">
+                            The Ultimate <span className="font-bold text-accent-cyan">AI-Powered</span> Travel Guide for Bangladesh
                         </p>
 
-                        <div className="flex flex-col gap-6 w-full max-w-2xl justify-center items-center">
-                            <form onSubmit={handleSearch} className="w-full relative">
+                        <div className="flex flex-col gap-6 w-full max-w-2xl justify-center items-center animate-slide-up delay-200">
+                            <form onSubmit={handleSearch} className="w-full relative group">
+                                <div className="absolute -inset-1 bg-gradient-to-r from-accent-cyan via-accent-purple to-accent-pink rounded-full opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
                                 <input
                                     type="text"
-                                    placeholder="Search specific place (e.g., Sajek Valley)..."
-                                    className="w-full px-6 py-4 rounded-full text-slate-900 focus:outline-none focus:ring-4 focus:ring-teal-500/50 shadow-lg text-lg"
+                                    placeholder="Search any destination in Bangladesh..."
+                                    className="relative w-full px-6 py-4 rounded-full bg-dark-200/80 backdrop-blur-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-accent-cyan/50 border border-white/10 shadow-2xl text-lg"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
                                 <button
                                     type="submit"
-                                    className="absolute right-2 top-2 bottom-2 bg-teal-600 hover:bg-teal-700 text-white px-6 rounded-full font-medium transition-colors"
+                                    className="absolute right-2 top-2 bottom-2 bg-gradient-to-r from-accent-cyan to-accent-purple hover:from-accent-purple hover:to-accent-pink text-white px-8 rounded-full font-bold transition-all duration-300 glow-cyan hover:scale-105"
                                 >
                                     Search
                                 </button>
@@ -186,35 +196,39 @@ export const App: React.FC = () => {
 
                             <button
                                 onClick={() => setViewState(ViewState.TRIP_PLANNER)}
-                                className="w-full md:w-auto px-10 py-4 bg-yellow-500 hover:bg-yellow-600 text-slate-900 rounded-full font-bold shadow-lg flex items-center justify-center gap-2 transition-transform hover:scale-105"
+                                className="group w-full md:w-auto px-10 py-4 glass-card rounded-full font-bold flex items-center justify-center gap-3 transition-all duration-300 hover-lift glow-purple hover:glow-pink"
                             >
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-6 h-6 text-accent-pink group-hover:rotate-12 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                                 </svg>
-                                Plan My Trip
+                                <span className="bg-gradient-to-r from-accent-pink via-accent-purple to-accent-cyan bg-clip-text text-transparent font-extrabold text-lg">Plan My Trip</span>
                             </button>
                         </div>
                     </div>
                 </div>
 
                 {/* Browse Section */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
                     {/* Tabs */}
-                    <div className="flex justify-center mb-10 border-b border-slate-200">
+                    <div className="flex justify-center mb-12 glass-card rounded-full p-2 w-fit mx-auto">
                         <button
                             onClick={() => setActiveTab('types')}
-                            className={`pb-4 px-8 text-lg font-semibold transition-colors relative ${activeTab === 'types' ? 'text-teal-600' : 'text-slate-500 hover:text-slate-800'}`}
+                            className={`relative pb-3 px-8 py-3 text-base font-bold transition-all duration-300 rounded-full ${activeTab === 'types'
+                                    ? 'bg-gradient-to-r from-accent-cyan to-accent-purple text-white shadow-lg'
+                                    : 'text-slate-400 hover:text-white'
+                                }`}
                         >
                             Browse by Type
-                            {activeTab === 'types' && <div className="absolute bottom-0 left-0 right-0 h-1 bg-teal-600 rounded-t-full"></div>}
                         </button>
                         <button
                             onClick={() => setActiveTab('divisions')}
-                            className={`pb-4 px-8 text-lg font-semibold transition-colors relative ${activeTab === 'divisions' ? 'text-teal-600' : 'text-slate-500 hover:text-slate-800'}`}
+                            className={`relative pb-3 px-8 py-3 text-base font-bold transition-all duration-300 rounded-full ${activeTab === 'divisions'
+                                    ? 'bg-gradient-to-r from-accent-purple to-accent-pink text-white shadow-lg'
+                                    : 'text-slate-400 hover:text-white'
+                                }`}
                         >
                             Browse by Division
-                            {activeTab === 'divisions' && <div className="absolute bottom-0 left-0 right-0 h-1 bg-teal-600 rounded-t-full"></div>}
                         </button>
                     </div>
 
@@ -223,15 +237,15 @@ export const App: React.FC = () => {
                         {activeTab === 'types' && (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {TYPES.map((cat, idx) => (
-                                    <div key={idx} className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all hover:border-teal-200">
-                                        <div className="text-4xl mb-4">{cat.icon}</div>
-                                        <h3 className="text-xl font-bold text-slate-800 mb-4">{cat.name}</h3>
+                                    <div key={idx} className="glass-card rounded-2xl p-6 hover-lift group animate-slide-up" style={{ animationDelay: `${idx * 50}ms` }}>
+                                        <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">{cat.icon}</div>
+                                        <h3 className="text-xl font-bold text-white mb-5 group-hover:text-accent-cyan transition-colors">{cat.name}</h3>
                                         <div className="flex flex-wrap gap-2">
                                             {cat.places.map((place, pIdx) => (
                                                 <button
                                                     key={pIdx}
                                                     onClick={() => loadDestination(place)}
-                                                    className="text-sm bg-slate-50 text-slate-700 hover:bg-teal-50 hover:text-teal-700 px-3 py-1.5 rounded-full border border-slate-200 transition-colors"
+                                                    className="text-sm glass px-4 py-2 rounded-full border border-white/20 hover:border-accent-cyan hover:bg-accent-cyan/20 text-slate-300 hover:text-white transition-all duration-300"
                                                 >
                                                     {place}
                                                 </button>
@@ -243,21 +257,22 @@ export const App: React.FC = () => {
                         )}
 
                         {activeTab === 'divisions' && (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {DIVISIONS.map((div, idx) => (
-                                    <div key={idx} className="bg-white border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                                        <div className="bg-teal-50 px-6 py-4 border-b border-teal-100">
-                                            <h3 className="text-lg font-bold text-teal-800">{div.name}</h3>
+                                    <div key={idx} className="glass-card rounded-2xl overflow-hidden hover-lift animate-slide-up" style={{ animationDelay: `${idx * 100}ms` }}>
+                                        <div className="bg-gradient-to-r from-accent-purple/20 to-accent-pink/20 px-6 py-5 border-b border-white/10">
+                                            <h3 className="text-xl font-bold text-white">{div.name}</h3>
                                         </div>
                                         <div className="p-6">
-                                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+                                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                                 {div.places.map((place, pIdx) => (
                                                     <li key={pIdx}>
                                                         <button
                                                             onClick={() => loadDestination(place)}
-                                                            className="text-slate-600 hover:text-teal-600 hover:underline text-sm text-left w-full truncate"
+                                                            className="text-slate-300 hover:text-accent-cyan transition-colors text-sm text-left w-full truncate flex items-center gap-2 group"
                                                         >
-                                                            📍 {place}
+                                                            <span className="text-accent-pink group-hover:scale-125 transition-transform">📍</span>
+                                                            <span className="group-hover:translate-x-1 transition-transform">{place}</span>
                                                         </button>
                                                     </li>
                                                 ))}
@@ -275,21 +290,27 @@ export const App: React.FC = () => {
     );
 
     const renderPlanner = () => (
-        <div className="min-h-screen bg-slate-50 flex flex-col">
-            <header className="bg-white shadow-sm sticky top-0 z-40">
+        <div className="min-h-screen flex flex-col relative overflow-hidden">
+            {/* Background effects */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute w-96 h-96 bg-accent-purple/20 rounded-full blur-3xl top-10 right-10 animate-float"></div>
+                <div className="absolute w-96 h-96 bg-accent-cyan/20 rounded-full blur-3xl bottom-10 left-10 animate-float delay-200"></div>
+            </div>
+
+            <header className="glass-card sticky top-0 z-40 border-b border-white/10">
                 <div className="max-w-7xl mx-auto px-4 h-16 flex items-center">
                     <button
                         onClick={goHome}
-                        className="p-2 rounded-full hover:bg-slate-100 text-slate-600 transition-colors mr-2"
+                        className="p-2 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-all mr-3 group"
                     >
-                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-6 h-6 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
                     </button>
-                    <h1 className="text-lg font-bold text-slate-900">Back to Home</h1>
+                    <h1 className="text-lg font-bold gradient-text">Back to Home</h1>
                 </div>
             </header>
-            <div className="flex-1 flex items-center justify-center p-4">
+            <div className="flex-1 flex items-center justify-center p-4 relative z-10">
                 <TripPlannerForm
                     onPlanTrip={handlePlanTrip}
                     onCancel={goHome}
@@ -301,20 +322,26 @@ export const App: React.FC = () => {
     );
 
     const renderDetail = () => (
-        <div className="min-h-screen bg-slate-50 flex flex-col">
+        <div className="min-h-screen flex flex-col relative overflow-hidden">
+            {/* Background gradient effects */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute w-96 h-96 bg-accent-emerald/10 rounded-full blur-3xl top-0 right-0 animate-float"></div>
+                <div className="absolute w-96 h-96 bg-accent-purple/10 rounded-full blur-3xl bottom-0 left-0 animate-float delay-200"></div>
+            </div>
+
             {/* Header */}
-            <header className="bg-white shadow-sm sticky top-0 z-40">
+            <header className="glass-strong sticky top-0 z-40 border-b border-white/10">
                 <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                         <button
                             onClick={goHome}
-                            className="p-2 rounded-full hover:bg-slate-100 text-slate-600 transition-colors"
+                            className="p-2 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-all group"
                         >
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-6 h-6 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
                         </button>
-                        <h1 className="text-lg md:text-xl font-bold text-slate-900 capitalize truncate max-w-[150px] md:max-w-md">
+                        <h1 className="text-lg md:text-xl font-bold gradient-text capitalize truncate max-w-[150px] md:max-w-md">
                             {selectedDestination}
                         </h1>
                     </div>
@@ -322,7 +349,7 @@ export const App: React.FC = () => {
                         <button
                             onClick={handleDownloadPdf}
                             disabled={loading || !guideData}
-                            className="flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg transition-colors text-xs md:text-sm font-bold shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-gradient-to-r from-accent-cyan to-accent-purple hover:from-accent-purple hover:to-accent-pink text-white rounded-xl transition-all text-xs md:text-sm font-bold glow-cyan disabled:opacity-50 disabled:cursor-not-allowed"
                             title="Download as PDF"
                         >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -335,34 +362,34 @@ export const App: React.FC = () => {
             </header>
 
             {/* Main Content */}
-            <main className="flex-1 max-w-7xl w-full mx-auto px-4 py-6 md:py-8 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+            <main className="flex-1 max-w-7xl w-full mx-auto px-4 py-6 md:py-8 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 relative z-10">
 
                 {/* Left Column: Content (8 cols) */}
                 <div className="lg:col-span-8 space-y-6">
                     {loading ? (
-                        <div className="bg-white rounded-2xl p-12 shadow-sm text-center border border-slate-100">
+                        <div className="glass-card rounded-2xl p-12 text-center animate-slide-up">
                             <Spinner />
-                            <h3 className="mt-6 text-lg font-medium text-slate-800">Creating your guide...</h3>
+                            <h3 className="mt-6 text-lg font-medium text-white">Creating your guide...</h3>
                             <div className="mt-4 space-y-2 max-w-md mx-auto">
-                                <p className="text-sm text-slate-500 animate-pulse">Searching updated transport costs...</p>
-                                <p className="text-sm text-slate-500 animate-pulse delay-100">Checking safety advisories...</p>
-                                <p className="text-sm text-slate-500 animate-pulse delay-200">Finding best local food spots...</p>
+                                <p className="text-sm text-slate-400 animate-pulse">Searching updated transport costs...</p>
+                                <p className="text-sm text-slate-400 animate-pulse delay-100">Checking safety advisories...</p>
+                                <p className="text-sm text-slate-400 animate-pulse delay-200">Finding best local food spots...</p>
                             </div>
                         </div>
                     ) : error ? (
-                        <div className="bg-red-50 text-red-600 p-8 rounded-xl text-center border border-red-100">
-                            <h3 className="font-bold text-lg mb-2">Something went wrong</h3>
-                            <p>{error}</p>
-                            <button onClick={goHome} className="mt-4 px-4 py-2 bg-white border border-red-200 rounded-full text-sm font-medium hover:bg-red-50 transition-colors">Go Back</button>
+                        <div className="glass-card rounded-2xl p-8 text-center border border-red-500/30 bg-red-500/10">
+                            <h3 className="font-bold text-lg mb-2 text-red-400">Something went wrong</h3>
+                            <p className="text-red-300">{error}</p>
+                            <button onClick={goHome} className="mt-4 px-6 py-2 glass-card rounded-full text-sm font-medium hover:bg-white/10 transition-all">Go Back</button>
                         </div>
                     ) : guideData ? (
                         <>
                             {/* Wrap the printable content in a specific ID */}
-                            <div id="guide-content" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                            <div id="guide-content" className="glass-card rounded-2xl overflow-hidden animate-slide-up">
                                 {/* Dynamic Header Image Pattern */}
-                                <div className="h-48 md:h-64 w-full bg-teal-900 relative flex items-center justify-center overflow-hidden">
-                                    <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-                                    <h2 className="relative z-10 text-3xl md:text-5xl font-bold text-white text-center px-4 drop-shadow-lg">{guideData.locationName}</h2>
+                                <div className="h-48 md:h-64 w-full animated-gradient relative flex items-center justify-center overflow-hidden">
+                                    <div className="absolute inset-0 bg-dark-900/40"></div>
+                                    <h2 className="relative z-10 text-3xl md:text-5xl font-bold text-white text-center px-4 drop-shadow-2xl">{guideData.locationName}</h2>
                                 </div>
 
                                 <div className="p-6 md:p-8">
@@ -374,9 +401,9 @@ export const App: React.FC = () => {
                             <div className="lg:hidden space-y-6">
                                 {/* Maps Grounding Results */}
                                 {guideData.groundingChunks.some(c => c.maps) && (
-                                    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
-                                        <h3 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                                            <svg className="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <div className="glass-card rounded-xl p-5">
+                                        <h3 className="font-bold text-white mb-4 flex items-center gap-2">
+                                            <svg className="w-5 h-5 text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
@@ -398,9 +425,9 @@ export const App: React.FC = () => {
                 <div className="lg:col-span-4 space-y-6">
                     {/* Sources (Web Grounding) */}
                     {!loading && guideData && guideData.groundingChunks.some(c => c.web) && (
-                        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
-                            <h3 className="font-bold text-slate-800 mb-3 text-sm uppercase tracking-wide flex items-center gap-2">
-                                <svg className="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div className="glass-card rounded-xl p-4">
+                            <h3 className="font-bold text-white mb-3 text-sm uppercase tracking-wide flex items-center gap-2">
+                                <svg className="w-4 h-4 text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                                 </svg>
                                 Web Sources
@@ -415,15 +442,15 @@ export const App: React.FC = () => {
 
                     {/* Desktop Maps Grounding */}
                     {!loading && guideData && guideData.groundingChunks.some(c => c.maps) && (
-                        <div className="hidden lg:block bg-white rounded-xl shadow-sm border border-slate-200 p-5">
-                            <h3 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                                <svg className="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div className="hidden lg:block glass-card rounded-xl p-5">
+                            <h3 className="font-bold text-white mb-4 flex items-center gap-2">
+                                <svg className="w-5 h-5 text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                                 Locations Found
                             </h3>
-                            <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
+                            <div className="space-y-3 max-h-60 overflow-y-auto pr-2 custom-scrollbar">
                                 {guideData.groundingChunks.filter(c => c.maps).map((chunk, idx) => (
                                     <MapCard key={idx} chunk={chunk} />
                                 ))}
@@ -432,30 +459,30 @@ export const App: React.FC = () => {
                     )}
 
                     {/* AI Assistant Chat - Sticky on Desktop */}
-                    <div className={`bg-white rounded-xl shadow-xl border border-teal-100 flex flex-col h-[550px] ${!loading && guideData ? 'lg:sticky lg:top-24' : ''}`}>
-                        <div className="p-4 border-b border-teal-50 bg-gradient-to-r from-teal-50 to-white rounded-t-xl">
+                    <div className={`glass-strong rounded-xl flex flex-col h-[550px] glow-purple ${!loading && guideData ? 'lg:sticky lg:top-24' : ''}`}>
+                        <div className="p-4 border-b border-white/10 bg-gradient-to-r from-accent-purple/20 to-accent-cyan/20 rounded-t-xl">
                             <div className="flex items-center gap-2">
-                                <div className="p-2 bg-teal-100 rounded-lg text-teal-700">
+                                <div className="p-2 bg-accent-cyan/20 rounded-lg text-accent-cyan border border-accent-cyan/30">
                                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-slate-800 text-sm">Travel Assistant</h3>
-                                    <p className="text-xs text-slate-500 flex items-center gap-1">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                    <h3 className="font-bold text-white text-sm">Travel Assistant</h3>
+                                    <p className="text-xs text-slate-400 flex items-center gap-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-accent-emerald animate-pulse"></span>
                                         Thinking Mode Active
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+                        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-dark-900/30 custom-scrollbar">
                             {chatHistory.map((msg, idx) => (
-                                <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                    <div className={`max-w-[90%] rounded-2xl p-3 text-sm shadow-sm ${msg.role === 'user'
-                                        ? 'bg-teal-600 text-white rounded-br-none'
-                                        : 'bg-white text-slate-700 border border-slate-200 rounded-bl-none'
+                                <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-slide-up`}>
+                                    <div className={`max-w-[90%] rounded-2xl p-3 text-sm backdrop-blur-xl ${msg.role === 'user'
+                                        ? 'bg-gradient-to-r from-accent-cyan to-accent-purple text-white rounded-br-none glow-cyan'
+                                        : 'glass border border-white/20 text-slate-200 rounded-bl-none'
                                         }`}>
                                         <MarkdownRenderer content={msg.text} />
                                     </div>
@@ -463,12 +490,12 @@ export const App: React.FC = () => {
                             ))}
                             {chatLoading && (
                                 <div className="flex justify-start">
-                                    <div className="bg-white border border-slate-200 rounded-2xl rounded-bl-none p-4 text-sm shadow-sm flex items-center gap-2">
+                                    <div className="glass border border-white/20 rounded-2xl rounded-bl-none p-4 text-sm flex items-center gap-2">
                                         <span className="text-xs text-slate-400 font-medium">Thinking</span>
                                         <div className="flex gap-1">
-                                            <span className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-bounce"></span>
-                                            <span className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-bounce delay-100"></span>
-                                            <span className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-bounce delay-200"></span>
+                                            <span className="w-1.5 h-1.5 bg-accent-cyan rounded-full animate-bounce"></span>
+                                            <span className="w-1.5 h-1.5 bg-accent-purple rounded-full animate-bounce delay-100"></span>
+                                            <span className="w-1.5 h-1.5 bg-accent-pink rounded-full animate-bounce delay-200"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -476,20 +503,20 @@ export const App: React.FC = () => {
                             <div ref={messagesEndRef} />
                         </div>
 
-                        <form onSubmit={handleChatSubmit} className="p-3 border-t border-slate-100 bg-white rounded-b-xl">
+                        <form onSubmit={handleChatSubmit} className="p-3 border-t border-white/10 bg-dark-900/40 rounded-b-xl">
                             <div className="flex gap-2">
                                 <input
                                     type="text"
                                     value={chatInput}
                                     onChange={(e) => setChatInput(e.target.value)}
                                     placeholder="Ask about costs, scams, safe routes..."
-                                    className="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all"
+                                    className="flex-1 px-4 py-2.5 glass border border-white/10 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/50 transition-all"
                                     disabled={loading || chatLoading}
                                 />
                                 <button
                                     type="submit"
                                     disabled={loading || chatLoading || !chatInput.trim()}
-                                    className="bg-teal-600 text-white p-2.5 rounded-lg hover:bg-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+                                    className="bg-gradient-to-r from-accent-cyan to-accent-purple hover:from-accent-purple hover:to-accent-pink text-white p-2.5 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all glow-cyan"
                                 >
                                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

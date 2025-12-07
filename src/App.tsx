@@ -215,8 +215,8 @@ export const App: React.FC = () => {
                         <button
                             onClick={() => setActiveTab('types')}
                             className={`relative pb-3 px-8 py-3 text-base font-bold transition-all duration-300 rounded-full ${activeTab === 'types'
-                                    ? 'bg-gradient-to-r from-accent-cyan to-accent-purple text-white shadow-lg'
-                                    : 'text-slate-400 hover:text-white'
+                                ? 'bg-gradient-to-r from-accent-cyan to-accent-purple text-white shadow-lg'
+                                : 'text-slate-400 hover:text-white'
                                 }`}
                         >
                             Browse by Type
@@ -224,8 +224,8 @@ export const App: React.FC = () => {
                         <button
                             onClick={() => setActiveTab('divisions')}
                             className={`relative pb-3 px-8 py-3 text-base font-bold transition-all duration-300 rounded-full ${activeTab === 'divisions'
-                                    ? 'bg-gradient-to-r from-accent-purple to-accent-pink text-white shadow-lg'
-                                    : 'text-slate-400 hover:text-white'
+                                ? 'bg-gradient-to-r from-accent-purple to-accent-pink text-white shadow-lg'
+                                : 'text-slate-400 hover:text-white'
                                 }`}
                         >
                             Browse by Division
@@ -482,7 +482,7 @@ export const App: React.FC = () => {
                                 <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-slide-up`}>
                                     <div className={`max-w-[90%] rounded-2xl p-3 text-sm backdrop-blur-xl ${msg.role === 'user'
                                         ? 'bg-gradient-to-r from-accent-cyan to-accent-purple text-white rounded-br-none glow-cyan'
-                                        : 'glass border border-white/20 text-slate-200 rounded-bl-none'
+                                        : 'glass border border-white/20 text-white rounded-bl-none'
                                         }`}>
                                         <MarkdownRenderer content={msg.text} />
                                     </div>

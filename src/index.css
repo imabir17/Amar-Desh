@@ -4,9 +4,15 @@
 
 @layer base {
     body {
-        @apply bg-dark-900 text-slate-100;
+        @apply bg-dark-900;
+        color: #ffffff;
         background: linear-gradient(135deg, #020617 0%, #0a0f1e 50%, #1e293b 100%);
         background-attachment: fixed;
+    }
+
+    /* Force all text elements to be pure white */
+    * {
+        color: #ffffff !important;
     }
 }
 

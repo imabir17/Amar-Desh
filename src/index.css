@@ -9,11 +9,6 @@
         background: linear-gradient(135deg, #020617 0%, #0a0f1e 50%, #1e293b 100%);
         background-attachment: fixed;
     }
-
-    /* Force all text elements to be pure white */
-    * {
-        color: #ffffff !important;
-    }
 }
 
 @layer components {
